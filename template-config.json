@@ -1,0 +1,145 @@
+{
+ "services": {
+  "23f7caf1-7ce7-484f-bfa8-07cf4ea10455": {
+   "icon": "https://raw.githubusercontent.com/nomideusz/langflow-railway/main/icon.png",
+   "name": "Langflow",
+   "build": {},
+   "deploy": {
+    "startCommand": null,
+    "healthcheckPath": "/health",
+    "healthcheckTimeout": 300,
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
+   },
+   "source": {
+    "image": "langflowai/langflow:1.12.6"
+   },
+   "networking": {
+    "serviceDomains": {
+     "<hasDomain>": {}
+    }
+   },
+   "volumeMounts": {
+    "1d04b7a7-ab06-4ef7-bf27-cb030ece6f6d": {
+     "mountPath": "/app/langflow"
+    }
+   },
+   "variables": {
+    "LANGFLOW_SUPERUSER": {
+     "defaultValue": "admin",
+     "description": "Admin username for the login page.",
+     "isOptional": false
+    },
+    "LANGFLOW_SUPERUSER_PASSWORD": {
+     "defaultValue": "${{secret(24, \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\")}}",
+     "description": "Admin password, generated at deploy. Find it here, under Variables.",
+     "isOptional": false
+    },
+    "LANGFLOW_SECRET_KEY": {
+     "defaultValue": "${{secret(43, \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_\")}}",
+     "description": "Signs logins and encrypts the API keys and global variables you store in Langflow. 43 url-safe characters (32 bytes base64), as Langflow requires. Never change or lose it: stored keys can't be decrypted without it.",
+     "isOptional": false
+    },
+    "LANGFLOW_AUTO_LOGIN": {
+     "defaultValue": "false",
+     "description": "Keep false. True turns off the login page, so anyone with the URL would get admin access.",
+     "isOptional": false
+    },
+    "LANGFLOW_ENABLE_SIGNUP": {
+     "defaultValue": "false",
+     "description": "Public sign-up on the login page. Leave false; turn it on briefly to let teammates register (see the template README).",
+     "isOptional": false
+    },
+    "LANGFLOW_DATABASE_URL": {
+     "defaultValue": "postgresql://${{Postgres.POSTGRES_USER}}:${{Postgres.POSTGRES_PASSWORD}}@${{Postgres.RAILWAY_PRIVATE_DOMAIN}}:5432/${{Postgres.POSTGRES_DB}}",
+     "description": "Flows, users, messages and run history live in Postgres.",
+     "isOptional": false
+    },
+    "LANGFLOW_CONFIG_DIR": {
+     "defaultValue": "/app/langflow",
+     "description": "Uploaded files, knowledge bases and logs, on the volume.",
+     "isOptional": false
+    },
+    "LANGFLOW_ACCESS_SECURE": {
+     "defaultValue": "true",
+     "description": "Login cookies are HTTPS-only (Railway serves HTTPS).",
+     "isOptional": false
+    },
+    "LANGFLOW_REFRESH_SECURE": {
+     "defaultValue": "true",
+     "description": "Login cookies are HTTPS-only (Railway serves HTTPS).",
+     "isOptional": false
+    },
+    "LANGFLOW_RATE_LIMIT_PER_MINUTE": {
+     "defaultValue": "20",
+     "description": "Login attempts per minute. Railway's proxy makes every visitor look like one IP, so this is shared by everyone.",
+     "isOptional": false
+    },
+    "LANGFLOW_LOG_LEVEL": {
+     "defaultValue": "info",
+     "description": "Log verbosity (debug, info, warning, error).",
+     "isOptional": false
+    },
+    "RAILWAY_RUN_UID": {
+     "defaultValue": "0",
+     "description": "Runs as root so Langflow can write to the volume (Railway mounts it root-owned).",
+     "isOptional": false
+    },
+    "PORT": {
+     "defaultValue": "7860",
+     "description": "Port Langflow listens on - leave as is.",
+     "isOptional": false
+    }
+   }
+  },
+  "e9a01a7f-c983-4442-8a3b-16fd37fd75d2": {
+   "icon": "https://devicons.railway.app/i/postgresql.svg",
+   "name": "Postgres",
+   "build": {},
+   "deploy": {
+    "startCommand": null,
+    "healthcheckPath": null,
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
+   },
+   "source": {
+    "image": "ghcr.io/railwayapp-templates/postgres-ssl:17"
+   },
+   "networking": {
+    "serviceDomains": {}
+   },
+   "volumeMounts": {
+    "bca0967d-5249-461b-96c9-2ab6ac077190": {
+     "mountPath": "/var/lib/postgresql/data"
+    }
+   },
+   "variables": {
+    "POSTGRES_DB": {
+     "defaultValue": "langflow",
+     "description": "Database name",
+     "isOptional": false
+    },
+    "POSTGRES_USER": {
+     "defaultValue": "langflow",
+     "description": "Database user",
+     "isOptional": false
+    },
+    "POSTGRES_PASSWORD": {
+     "defaultValue": "${{secret(32, \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\")}}",
+     "description": "Auto-generated database password",
+     "isOptional": false
+    },
+    "PGDATA": {
+     "defaultValue": "/var/lib/postgresql/data/pgdata",
+     "description": "Data subdirectory - keeps Postgres happy on Railway volumes",
+     "isOptional": false
+    },
+    "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
+     "defaultValue": "60",
+     "description": "Time for Postgres to shut down cleanly on redeploy",
+     "isOptional": false
+    }
+   }
+  }
+ }
+}
