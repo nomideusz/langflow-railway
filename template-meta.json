@@ -3,7 +3,7 @@
   "short_name": "Langflow Production",
   "description": "Build AI agents, RAG and MCP servers visually. Login on, pinned, Postgres.",
   "category": "AI/ML",
-  "image": "https://raw.githubusercontent.com/nomideusz/langflow-railway/main/icon.png",
+  "image": "https://raw.githubusercontent.com/two-workspaces/langflow/main/icon.png",
   "id": "26b393ad-13e0-435e-82ff-80d11ff1164b",
   "published": true
 }

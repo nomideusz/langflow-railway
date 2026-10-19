@@ -1,7 +1,7 @@
 {
  "services": {
   "23f7caf1-7ce7-484f-bfa8-07cf4ea10455": {
-   "icon": "https://raw.githubusercontent.com/nomideusz/langflow-railway/main/icon.png",
+   "icon": "https://raw.githubusercontent.com/two-workspaces/langflow/main/icon.png",
    "name": "Langflow",
    "build": {},
    "deploy": {

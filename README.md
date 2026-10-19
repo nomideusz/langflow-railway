@@ -28,7 +28,7 @@ This template runs Langflow 1.12.6 with PostgreSQL on Railway, set up the way yo
 
 - [Langflow documentation](https://docs.langflow.org)
 - [Langflow on GitHub](https://github.com/langflow-ai/langflow)
-- [Template source on GitHub](https://github.com/nomideusz/langflow-railway)
+- [Template source on GitHub](https://github.com/two-workspaces/langflow)
 
 ### Implementation Details
 
