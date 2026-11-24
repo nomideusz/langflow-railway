@@ -6,7 +6,7 @@
 
 ## About Hosting Langflow
 
-This template runs Langflow 1.12.6 with PostgreSQL on Railway, set up the way you'd run it for a team rather than on a laptop.
+This template runs Langflow 1.13.3 with PostgreSQL on Railway, set up the way you'd run it for a team rather than on a laptop.
 
 - **The login is on.** Langflow's own default is auto-login, which means no password: anyone who finds the URL is admin. Here auto-login is off, an `admin` account with a generated password is created on first boot, and public sign-up is closed.
 - **Encryption that works.** The API keys and global variables you store in Langflow are encrypted with `LANGFLOW_SECRET_KEY`, generated in the 43-character format Langflow's encryption needs. Get that format wrong and storing a key fails with "Fernet key must be 32 url-safe base64-encoded bytes".

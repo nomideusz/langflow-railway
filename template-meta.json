@@ -1,5 +1,5 @@
 {
-  "name": "Langflow | Visual AI Agent & RAG Builder with Postgres",
+  "name": "Langflow",
   "short_name": "Langflow Production",
   "description": "Build AI agents, RAG and MCP servers visually. Login on, pinned, Postgres.",
   "category": "AI/ML",
