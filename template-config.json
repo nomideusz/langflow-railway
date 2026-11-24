@@ -12,7 +12,7 @@
     "restartPolicyMaxRetries": 10
    },
    "source": {
-    "image": "langflowai/langflow:1.12.6"
+    "image": "langflowai/langflow:1.13.3"
    },
    "networking": {
     "serviceDomains": {
